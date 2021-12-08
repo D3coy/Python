@@ -22,7 +22,6 @@ def selectionSort(arr):
 
 def main ():
     mass = [4, 1, 9, 24, 2]
-
     print(selectionSort(mass))
 
 if __name__ == '__main__':

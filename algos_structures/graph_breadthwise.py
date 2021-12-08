@@ -31,7 +31,7 @@ def search_people(names):
             else:
                 search_queue = n_list       # just check, that del() from deque function deletes value globally
                 searched.append(person)
-                #print(searched)
+                print(searched)
 
 def main():
     graph = {}

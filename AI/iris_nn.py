@@ -2,6 +2,9 @@ import pandas as pd
 import numpy as np
 import os
 
+def sigmoid(S):
+    return 1 / (1 + np.exp(-S))
+
 df = pd.read_csv(os.path.join(os.path.dirname(__file__), 'iris_dataset', 'iris.csv'))
 X = df[['x0', 'x1', 'x2', 'x3', 'x4']]      # values from columns with specific header
 Y = df[['type']]
@@ -29,15 +32,18 @@ print(X.shape)
 print(Y.shape)
 
 W = np.random.rand(5, 3)
-print(W.shape)
+# W1 = np.random.rand(5, 5)
+# W2 = np.random.rand(5, 3)
 
 a = 0.001
 for epoch in range(1, 200):
     for i, X_row in enumerate(X_train):
-        y_cappa = Y_train[i]        # shape [1x3]
-        #print(X_row.shape)          # shape [5x1]
+        y_cappa = Y_train[i]        # shape [1x3] [стр * столб]
+        #print(X_row.shape)          # shape [1x5]
 
-        y_experiment = np.array(X_row).dot(W)
+        # y_experiment = np.array(X_row).dot(W)
+        y_experiment = (np.array(X_row).dot(W))
+        
         E = np.sqrt((y_cappa[0] - y_experiment[0])**2 + (y_cappa[1] - y_experiment[1])**2 + (y_cappa[2] - y_experiment[2])**2)
         for i in range(0, W.shape[1]):
             for j in range(0, W.shape[0]):
@@ -49,7 +55,7 @@ print('[INFO] Learning is finished\n')
 count = 0
 for i, X_row in enumerate(X_test):
     label = Y_test[i]
-    y_experiment = np.array(X_row).dot(W)
+    y_experiment = sigmoid(np.array(X_row).dot(W))
     if np.argmax(y_experiment) == np.argmax(label):
         count += 1
     print(label, y_experiment)

@@ -15,7 +15,7 @@ def sort(array):
             if x > pivot:
                 greater.append(x)   # [15]                      # [5, 6, 7]
 
-        return sort(less) + equal+ sort(greater)
+        return sort(less) + equal + sort(greater)
 
     else:
         return array
@@ -26,9 +26,11 @@ def start():
 
 print(timeit.timeit("start()", setup="from __main__ import start", number=1))
 
-                                # [ [4, 5, 6, 7, 3, 1], [12], [15] ]
-# less                                                                      # greater
-# [ [3, 1], 4, 5, 6, 7]                                                     # 15
+#                       |less than pivot|    |pivot|  |greater|
+#                     [ [4, 5, 6, 7, 3, 1],   [12],   [15] ]
+#            //                                             \\
+#       less                                                  greater
+# [ [3, 1], 4, 5, 6, 7]                                         15
 #    /           \
 # less           greater
 # [ 1, 3 ]   4   [5, 6, 7]
