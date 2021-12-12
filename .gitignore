@@ -1,0 +1,5 @@
+.vscode/*
+*.json
+*.pyc
+*.log
+*.csv 
