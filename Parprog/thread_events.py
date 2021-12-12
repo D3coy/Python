@@ -12,8 +12,8 @@ def producer():
 
 def consumer():
     print("product wait")
-    product.wait()              # waiter of event, when some thread call set(), blocker of wait() will stop and then -
-    print("product exists")     # - we'll print()
+    product.wait()              # waiter of event, when some thread call set(), blocker of wait() will stop and then ->
+    print("product exists")     # -> it'll print()
     #product.wait()              # will be deadlock, 'cause of no second set() in def producer()
 
 product = threading.Event()     # logic of event
@@ -24,5 +24,6 @@ th_2 = threading.Thread(target=consumer)
 th_1.start()
 th_2.start()
 
+# hang-out the thread-s for execution timeout of each others
 th_1.join()
 th_2.join()
